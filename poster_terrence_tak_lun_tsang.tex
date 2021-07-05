@@ -21,7 +21,7 @@
 	urlcolor=cyan,
 }
 %\logo{\includegraphics[height=7.5cm]{example-image-a}}
-\usetheme[nofirafonts]{focus}
+\usetheme[]{default}
 \definecolor{main}{HTML}{750f6d}
 %\setbeamercolor*{palette primary}{bg=white}
 \definecolor{background}{RGB}{250, 250, 250}
@@ -98,7 +98,7 @@
 				
 				In particular, we're interested in using feedback systems that manipulate displacement signals from sensors and feedback to the suspension via actuators.
 				While such control systems are effective in reducing the displacement level suspension at the control band, control noises are introduced at higher frequencies.
-				To satisfy the displacement noise requirements, control regulators need to be roll-off, which limits the amount of suppression from the feedback system.
+				To satisfy the displacement noise requirements, control regulators need to be roll-off, which limits the amount of attenuation from the feedback system.
 				Since the control noise is dominated by sensing noise, lowering the sensing noise at higher frequencies enables the possibility of a greater control gain at lower frequencies, which makes the optics less susceptible to seismic disturbance.	
 				
 				\medskip
@@ -126,17 +126,22 @@
 						\end{figure}
 					\end{column}
 				\end{columns}
+			
+			\medskip
+			
+			The two sensors are each filtered with filters $H_1(s)$ and $H_2(s)$ respectively.
+			We required that the super sensor measuring the same signal that the two sensors are reading, so the filters must be complementary, i.e.
+			\begin{equation}
+				H_1(s) + H_2(s) = 1\,.
+				\label{eqn:complementary}
+			\end{equation}
 			\end{block}
 		\end{column}
 	
 		% Column 2
 		\begin{column}{0.32\linewidth}
 			\begin{block}{Methodology (cont.)}
-				The two sensors are each filtered with filters $H_1(s)$ and $H_2(s)$ respectively.
-				We required that the super sensor measuring the same signal that the two sensors are reading, so the filters must be complementary, i.e.
-				\begin{equation}
-					H_1(s) + H_2(s) = 1\,.
-				\end{equation}
+				
 				The super sensor noise then reads
 				\begin{equation}
 					N_\text{super}(s) = H_1(s)N_1(s) + H_2(s)N_2(s)\,.
@@ -189,23 +194,50 @@
 			
 			\medskip
 			
-			Although everything about $\mathcal{H}_\infty$ method discussed so far has been related to feedback control loop, it can also be used to synthesize complementary filters.
-				
-				
-				
+			\begin{columns}[t, onlytextwidth]
+				\begin{column}{0.475\textwidth}
+					Although everything about $\mathcal{H}_\infty$ method so far has been discussed under the context of feedback control, it can also be used to synthesize complementary filters.
+					Consider the generalized plant architecture as shown in Fig.~\ref{fig:generlized_plant_complementary_filter}.
+					Here, $\Phi_1$ and $\Phi_2$ are some uncorrelated stochastic processes with unit magnitude.
+					$\hat{N}_1$ and $\hat{N}_2$ are transfer function models of the noises $N_1$ and $N_2$ such that
+					$N_1(s) = \hat{N}_1(s)\Phi_1$ and $N_2(s) = \hat{N}_2(s)\Phi_2$.
+					$W_1(s)$ and $W_2(s)$ are some weighting functions.
+				\end{column}
+				\begin{column}{0.5\textwidth}
+					\begin{figure}[!h]
+						\centering
+						\includegraphics[width=1\linewidth]{generalized_plant_complementary_filter}
+						\caption{Generalized plant representation for complementary filter synthesis.}
+						\label{fig:generlized_plant_complementary_filter}
+					\end{figure}
+				\end{column}
+			\end{columns}
+		
+			\medskip
+			
+			The closed-loop transfer function reads
+			\begin{equation}
+				\mathbf{G}(s) = \begin{bmatrix}H_1(s)\hat{N}_1(s)W_1(s) & H_2(s)\hat{N}_2(s)W_2(s)\end{bmatrix}\,,
+			\end{equation}
+			where we've substitute $(1-H_1(s))$ with $H_2(s)$ due to Eqn.~\eqref{eqn:complementary}.
 			\end{block}
 			
-			\begin{block}{Results}
-			\end{block}
+			
 		\end{column}
 	
 		% Column 3
 		\begin{column}{0.32\linewidth}
-			\begin{block}{Discussion}
-				\lipsum[5]
+			\begin{block}{Methodology (cont.)}
+				The plant has a maximum singular value of
+				\begin{equation}
+				\bar\sigma(\mathbf{G}(j\omega)) \approx \max{(H_1(j\omega)\hat{N}_1(j\omega)W_1(j\omega),H_2(j\omega)\hat{N}_2(j\omega)W_2(j\omega))}\,,
+				\end{equation}
+				Now, if we set $W_1(s)=1/\hat{N}_2(s)$ and $W_2(s)=1/\hat{N}_1(s)$, then $\bar\sigma(\mathbf{G}(s))$ can be interpreted as the ratio between the super sensor noise and the lower bound of the sensing noise, assuming that the super sensor noise is dominated one of the filtered sensing noises, which is generally true except at the cross-over frequency.
+				Minimizing the $\mathcal{H}_\infty$ norm would then be approximately minimizing the maximum difference of the log super sensor noise and the log noise lower bound.
+			\end{block}
+			\begin{block}{Results}
 			\end{block}
 			\begin{block}{Conclusion}
-				\lipsum[6]
 			\end{block}
 			\begin{block}{References}
 				\bibliographystyle{unsrt}
