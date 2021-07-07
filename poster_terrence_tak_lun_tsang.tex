@@ -325,8 +325,8 @@
 				%				complementary filters from advanced LIGO \cite{Matichard:2015} and Virgo \cite{low_frequency_optimization_and_performance_of_advanced_virgo_seismic_isolation_system} also exhibit similar behavior, but the feature is clearly missing from that of \cite{Sekiguchi:2016bmv} and \cite{vanHeijningen:2018cpc}.
 				%				This is a designed feature to provide additional seismic noise attenuation in the relative displacement sensor readout.
 				%				Using the proposed method, we arrived at the same design feature by optimization using no additional information rather than the sensing noise themselves.
-			In Fig.~\ref{fig:super_sensor_noise_comparison}, we compare noise performance of the complementary filters from \cite{Sekiguchi:2016bmv}, \cite{vanHeijningen:2018cpc}, and the proposed method, which are denoted $N_\text{super, 1}$, $N_\text{super, 2}$, and $N_{\text{super},\mathcal{H}_\infty}$ respectively.
-			The super sensor noises were calculated directly using the noises $N_1$ and $N_2$, instead of the transfer function models, as shown in Fig.~\ref{fig:noise_fit}.
+			In Fig.~\ref{fig:super_sensor_noise_comparison}, we compare noise performance of the complementary filters from \cite{Sekiguchi:2016bmv}, \cite{vanHeijningen:2018cpc}, and the proposed method, and the super sensor nosies are denoted $N_\text{super, 1}$, $N_\text{super, 2}$, and $N_{\text{super},\mathcal{H}_\infty}$ respectively.
+			The super sensor noises were calculated directly use the quadrature sum of the filtered noises $\vert H_1(j\omega)\vert N_1$ and $\vert H_2(j\omega)\vert N_2$.
 			
 			\medskip
 			
