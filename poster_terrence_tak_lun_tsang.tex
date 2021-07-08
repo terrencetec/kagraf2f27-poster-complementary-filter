@@ -92,14 +92,17 @@
 				\medskip
 				
 				\begin{columns}[t, onlytextwidth]
-					\begin{column}{0.5\textwidth}	
+					\begin{column}{0.47\textwidth}	
 %						At higher frequencies, the displacement of the optics due to seismic noise is suppressed passively by suspending the optics with multiple-stage pendulum (suspension).
 %						At lower frequencies, the residual motion of the optics is dominated by resonances excited by the ground motion.
 %						While passive isolation is only effective at frequencies higher than the resonances, the residual motion of the optics at lower frequencies is reduced by active isolation using control systems.
 					Ground-based gravitational-wave detectors require vibration isolation systems (Fig.~\ref{fig:suspension_types}) to attenuate seismic noise induced displacement for the interferometer main optics.
 					Vibration isolation systems utilize local displacement sensors for feedback control to achieve active isolation at lower frequencies.
 					The control performance is limited by the sensors, so it's desirable for sensors to be as low-noise as possible.
-					In this work, we will describe a sensor fusion architecture that combines two sensors with different noise characteristics to obtain a virtual ``super sensor'' that has overall better noise performance.
+					
+					\medskip
+					
+					Complementary filter is a sensor fusion method that combines two sensors with different noise characteristics to obtain a virtual ``super sensor'' that has overall 
 					\end{column}
 					\begin{column}{0.5\textwidth}
 						\begin{figure}
@@ -111,10 +114,9 @@
 					\end{column}
 				\end{columns}
 				
-				\medskip
 				
-				Complementary filters are applied on the sensors and the readout signals are then summed to become the readout of the super sensor.
-				Complementary filter designs were proposed previously \cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc,low_frequency_optimization_and_performance_of_advanced_virgo_seismic_isolation_system}, but were arguablely suboptimal.
+				better noise performance.
+				Complementary filter designs were proposed previously \cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc,low_frequency_optimization_and_performance_of_advanced_virgo_seismic_isolation_system}, but were arguably suboptimal.
 				Also, besides heuristics, it was not clear how exactly the filter shapes were constrained according to the sensor noises in question.
 				Therefore, we propose to formulate the complementary filter problem as an $\mathcal{H}_\infty$ optimization problem and synthesize the filters, which optimally combine the sensors, using $\mathcal{H}_\infty$ method.
 %				In particular, we're interested in using feedback systems that manipulate displacement signals from sensors and feedback to the suspension via actuators.
@@ -133,7 +135,7 @@
 			\begin{block}{Methodology: Complementary Filter Problem as an $\mathcal{H}_\infty$ Problem}
 				\begin{columns}[t, onlytextwidth]
 					\begin{column}{0.5\textwidth}
-						Fig.~\ref{fig:two-sensor} shows a the block diagram typical two-sensor sensor fusion configuration using complementary filters.
+						Fig.~\ref{fig:two-sensor} shows the block diagram typical two-sensor sensor fusion configuration using complementary filters.
 						The two sensors are each filtered with filters $H_1(s)$ and $H_2(s)$ respectively.
 						We required that the super sensor measuring the same signal that the two sensors are reading, so the filters must be complementary, i.e.
 						\begin{equation}
