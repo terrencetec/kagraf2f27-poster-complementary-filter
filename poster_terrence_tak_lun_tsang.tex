@@ -135,9 +135,10 @@
 			\begin{block}{Methodology: Complementary Filter Problem as an $\mathcal{H}_\infty$ Problem}
 				\begin{columns}[t, onlytextwidth]
 					\begin{column}{0.5\textwidth}
-						Fig.~\ref{fig:two-sensor} shows the block diagram typical two-sensor sensor fusion configuration using complementary filters.
-						The two sensors are each filtered with filters $H_1(s)$ and $H_2(s)$ respectively.
-						We required that the super sensor measuring the same signal that the two sensors are reading, so the filters must be complementary, i.e.
+						Fig.~\ref{fig:two-sensor} shows the block diagram typical two-sensor configuration using complementary filters.
+						The two sensors are each filtered with $H_1(s)$ and $H_2(s)$ respectively.
+						The two sensors are measuring a common signal and the super sensor readout must contain the very same signal.
+						Hence, the two filters $H_1(s)$ and $H_2(s)$ must be complementary, i.e.
 						\begin{equation}
 							H_1(s) + H_2(s) = 1\,.
 							\label{eqn:complementary}
@@ -163,9 +164,10 @@
 %			\end{columns}
 			The super sensor noise then reads
 			\begin{equation}
-				N_\text{super}(s) = H_1(s)N_1(s) + H_2(s)N_2(s)\,.
+				N_\text{super}(s) = H_1(s)N_1(s) + H_2(s)N_2(s)\,,
 				\label{eqn:noise_super}
 			\end{equation}
+			where $N_1(s)$ and $N_2(s)$ are the sensing noises of the two sensors.
 			So, the goal is to design the complementary filters $H_1(s)$ and $H_2(s)$ such that $N_\text{super}(s)$ is minimized in some sense, or that it exhibits desirable noise characteristics.
 			
 			\medskip
@@ -180,7 +182,7 @@
 				\begin{column}{0.55\textwidth}
 					$\mathcal{H}_\infty$ method is used to synthesize regulator for feedback systems but is recently proposed for synthesizing complementary filters with frequency-dependent specifications \cite{Thomas:2019}.
 					And, It was shown that the method successfully reproduced one of the complementary filters at LIGO \cite{Matichard:2015} using the same specifications.
-					To use $\mathcal{H}_\infty$ method, the input-output system is first represented in the generalized plant representation as shown in Fig.~\ref{fig:generalized_plant_representation}.
+					To use $\mathcal{H}_\infty$ method, the input-output system is first represented in the generalized plant as shown in Fig.~\ref{fig:generalized_plant_representation}.
 				\end{column}
 				\begin{column}{0.45\textwidth}
 					\begin{figure}
@@ -230,7 +232,7 @@
 %					Although everything about $\mathcal{H}_\infty$ method so far has been discussed under the context of feedback control, it can also be used to synthesize complementary filters.
 					Consider the generalized plant architecture as shown in Fig.~\ref{fig:generlized_plant_complementary_filter}, which is a slight modification from that of \cite{Thomas:2019}.
 					Here, $\Phi_1$ and $\Phi_2$ are some uncorrelated stochastic processes with unit magnitude.
-					$\hat{N}_1(s)$ and $\hat{N}_2(s)$ are transfer function models of the noises $N_1$ and $N_2$.
+					$\hat{N}_1(s)$ and $\hat{N}_2(s)$ are transfer function models of the ASD of the noises $N_1$ and $N_2$.
 					$W_1(s)$ and $W_2(s)$ are some weighting functions, which can be used to specify the (inverse) frequency-dependent specification of the sensing noises $N_1$ and $N_2$ respectively.
 				\end{column}
 				\begin{column}{0.5\textwidth}
@@ -311,7 +313,7 @@
 				
 				\medskip
 				
-				Fig.~\ref{fig:super_sensor_noise_tf} shows the predicted super sensor noise (in green) defined by
+				Fig.~\ref{fig:super_sensor_noise_tf} shows the predicted ASD of the super sensor noise (in green) defined by
 				\begin{equation}
 					\left\vert \hat{N}_\text{super}(j\omega)\right\vert = \left[\left\vert H_1(j\omega)\right\vert^2\left\vert \hat{N}_1(j\omega)\right\vert^2 + \left\vert H_2(j\omega)\right\vert^2\left\vert \hat{N}_2(j\omega)\right\vert^2\right]^{\frac{1}{2}}\,.
 				\end{equation}
@@ -374,8 +376,8 @@
 			\begin{block}{Conclusion}
 				\begin{itemize}
 					\item The complementary filter problem was formulated as an $\mathcal{H}_\infty$ optimization problem.
-					\item Complementary filters can be synthesized using $\mathcal{H}_\infty$ method with no other information other than the sensing noises themselves.
-					\item The method was exemplified using SRM preisolator sensors and is able to generate filters that better reduce the RMS of the super sensor noise especially around the microseism band.
+					\item Complementary filters can be synthesized using $\mathcal{H}_\infty$ method with no information other than the sensing noises themselves.
+					\item The method was exemplified using SRM preisolator sensors and is shown to able to generate filters that better reduce the RMS of the super sensor noise especially around the microseism band.
 					\item While the $\mathcal{H}_\infty$ filters perform worse at 10 Hz, 3 orders of magnitude reduction in super sensor noise ASD (compared to LVDT) can still be achieved.
 				\end{itemize}
 			\end{block}
