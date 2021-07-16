@@ -182,7 +182,7 @@
 %			Therefore, we seek to find a method that can automatically generate optimal complementary filters according to the sensing noises themselves.
 			\begin{columns}[t, onlytextwidth]
 				\begin{column}{0.55\textwidth}
-					$\mathcal{H}_\infty$ method is used to synthesize regulator for feedback systems but is recently proposed for synthesizing complementary filters with frequency-dependent specifications \cite{Thomas:2019}.
+					$\mathcal{H}_\infty$ method is used to synthesize regulators for feedback systems but is recently proposed for synthesizing complementary filters with frequency-dependent specifications \cite{Thomas:2019}.
 					And, It was shown that the method successfully reproduced one of the complementary filters at LIGO \cite{Matichard:2015} using the same specifications.
 					To use $\mathcal{H}_\infty$ method, the input-output system is first represented in the generalized plant as shown in Fig.~\ref{fig:generalized_plant_representation}.
 				\end{column}
@@ -211,7 +211,7 @@
 			%			where $\mathbf{G}(s) = P_{11}(s) + P_{12}(s)\mathbf{K}(s)\left(I-P_{22}(s)\mathbf{K}(s)\right)^{-1}P_{21}(s)$ is the closed-loop transfer function matrix of the system.
 			where $\mathbf{G}(s)$ is the transfer function matrix from the inputs $w$ to the errors $z$.
 			$\mathcal{H}_\infty$ synthesis will then generate a regulator, which minimizes the $\mathcal{H}_\infty$ norm of the closed-loop transfer function $\mathbf{G}(s)$.
-			For readers who are interested in the interpretation of the $\mathcal{H}_\infty$ norm, please refer to external resources such as \cite{Thomas:2019, multivariable_feedback_control}.
+			For readers who are interested in the interpretation of the $\mathcal{H}_\infty$ norm, please refer to external resources such as Refs.~\cite{Thomas:2019, multivariable_feedback_control}.
 			\end{block}
 		\end{column}
 		
@@ -232,8 +232,8 @@
 			\begin{columns}[t, onlytextwidth]
 				\begin{column}{0.45\textwidth}
 %					Although everything about $\mathcal{H}_\infty$ method so far has been discussed under the context of feedback control, it can also be used to synthesize complementary filters.
-					Consider the generalized plant architecture as shown in Fig.~\ref{fig:generlized_plant_complementary_filter}, which is a slight modification from that of \cite{Thomas:2019}.
-					Here, $\Phi_1$ and $\Phi_2$ are some uncorrelated stochastic processes with unit magnitude.
+					Consider the generalized plant architecture as shown in Fig.~\ref{fig:generlized_plant_complementary_filter}, which has a slight modification compared to that of Ref.~\cite{Thomas:2019}.
+					Here, $\Phi_1$ and $\Phi_2$ are some uncorrelated stochastic processes with unit variance.
 					$\hat{N}_1(s)$ and $\hat{N}_2(s)$ are transfer function models of the ASD of the noises $N_1$ and $N_2$.
 					$W_1(s)$ and $W_2(s)$ are some weighting functions, which can be used to specify the (inverse) frequency-dependent specification of the sensing noises $N_1$ and $N_2$ respectively.
 				\end{column}
@@ -273,10 +273,10 @@
 				\begin{columns}[t, onlytextwidth]
 					\begin{column}{0.55\textwidth}
 						The proposed method is exemplified with sensing noises taken from the preisolator of the signal-recycling mirror (SRM) in KAGRA.
-						The complementary filters previously designed in \cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc} is also compared with that synthesized by the proposed method.
+						The complementary filters previously designed in Refs.~\cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc} are also compared with that synthesized by the proposed method.
 						
 						The amplitude spectral densities (ASDs) of the sensing noises $N_1$ and $N_2$ and the transfer function models $\hat{N}_1(s)$ and $\hat{N}_2(s)$ are shown in Fig.~\ref{fig:noise_fit}.
-						Here, $N_1$ denotes quadrature sum of the relative displacement sensor (LVDT) self-noise and the mean seismic noise at KAGRA taken from \cite{seismic_noise_of_kagra}, whereas $N_2$ is the geophone self-noise.
+						Here, $N_1$ denotes quadrature sum of the relative displacement sensor (LVDT) self-noise and the mean seismic noise at KAGRA taken from Ref.~\cite{seismic_noise_of_kagra}, whereas $N_2$ is the geophone self-noise.
 					\end{column}
 					\begin{column}{0.45\textwidth}
 						\begin{figure}
@@ -310,7 +310,7 @@
 				
 				\medskip
 				
-				With the noise models $\hat{N}_1(s)$ and $\hat{N}_2(s)$, complementary filters were synthesized using $\mathcal{H}_\infty$ method with no information other than the sensing noises themselves.
+				With the noise models $\hat{N}_1(s)$ and $\hat{N}_2(s)$, complementary filters are synthesized using $\mathcal{H}_\infty$ method with no information other than the sensing noises themselves.
 				The resulting complementary filters are shown in Fig.~\ref{fig:complementary_filters_hinfinity}.
 				
 				\medskip
@@ -331,16 +331,16 @@
 				%				complementary filters from advanced LIGO \cite{Matichard:2015} and Virgo \cite{low_frequency_optimization_and_performance_of_advanced_virgo_seismic_isolation_system} also exhibit similar behavior, but the feature is clearly missing from that of \cite{Sekiguchi:2016bmv} and \cite{vanHeijningen:2018cpc}.
 				%				This is a designed feature to provide additional seismic noise attenuation in the relative displacement sensor readout.
 				%				Using the proposed method, we arrived at the same design feature by optimization using no additional information rather than the sensing noise themselves.
-			In Fig.~\ref{fig:super_sensor_noise_comparison}, we compare noise performance of the complementary filters from \cite{Sekiguchi:2016bmv}, \cite{vanHeijningen:2018cpc}, and the proposed method, and the super sensor nosies are denoted $N_\text{super, 1}$, $N_\text{super, 2}$, and $N_{\text{super},\mathcal{H}_\infty}$ respectively.
-			The super sensor noises were calculated directly use the quadrature sum of the filtered noises $\vert H_1(j\omega)\vert N_1$ and $\vert H_2(j\omega)\vert N_2$.
+			In Fig.~\ref{fig:super_sensor_noise_comparison}, we compare noise performance of the complementary filters from Ref.~\cite{Sekiguchi:2016bmv}, Ref.~\cite{vanHeijningen:2018cpc}, and the proposed method, and the super sensor nosies are denoted $N_\text{super, 1}$, $N_\text{super, 2}$, and $N_{\text{super},\mathcal{H}_\infty}$ respectively.
+			The super sensor noises are calculated directly use the quadrature sum of the filtered noises $\vert H_1(j\omega)\vert N_1$ and $\vert H_2(j\omega)\vert N_2$.
 			
 			\medskip
 			
 			\begin{columns}[onlytextwidth]
 				\begin{column}{0.45\textwidth}
-					The cross-over frequency of the filters in \cite{Sekiguchi:2016bmv, vanHeijningen:2018cpc} were set to be the cross-over frequency of the sensing noises in Fig.~\ref{fig:noise_fit}, which is 0.0898 Hz in this case, as recommended in \cite{Sekiguchi:2016bmv}.
+					The cross-over frequency of the filters in Refs.~\cite{Sekiguchi:2016bmv, vanHeijningen:2018cpc} are set to be the cross-over frequency of the sensing noises in Fig.~\ref{fig:noise_fit}, which is 0.0898 Hz in this case, as recommended in Ref.~\cite{Sekiguchi:2016bmv}.
 					The ASD of the super sensor noise from $\mathcal{H}_\infty$ filters is on par, if not lower, compared to the other two below $0.4\,\text{Hz}$ but is slightly higher at higher frequencies.
-					The shape of $N_{\text{super}, \mathcal{H}_\infty}$ at higher frequencies still follows that of the lower bound, which again, indicating that the sensing noises are critically roll-offed.
+					The shape of $N_{\text{super}, \mathcal{H}_\infty}$ at higher frequencies still follows that of the lower bound, which again, indicating that the sensing noises are critically rolled off.
 				\end{column}
 				\begin{column}{0.5\textwidth}
 					\begin{figure}
@@ -354,11 +354,11 @@
 
 			\medskip
 			
-			Performance indices are compared in table.~\ref{table:metrics}, including the super sensor noises' RMS (overall noise performance), the band-limited RMS around 0.1 to 0.5 Hz (seismic noise attenuation performance at microseism), and the ASD at 10 Hz (potential feedback control limit).
+			Performance indices are compared in Table.~\ref{table:metrics}, including the super sensor noises' RMS (overall noise performance), the band-limited RMS around 0.1 to 0.5 Hz (seismic noise attenuation performance at microseism), and the ASD at 10 Hz (potential feedback control limit).
 			\begin{table}
 				\begin{tabular}{|c|c|c|c|}
 					\hline
-					& RMS ($\mu\text{m}$) & RMS (0.1-0.5 Hz) ($\mu\text{m}$)& ASD (10Hz) ($\mu\text{m}/\sqrt{\text{Hz}}$)\\
+					& RMS ($\mu\text{m}$) & RMS (0.1-0.5 Hz) ($\mu\text{m}$)& ASD (10 Hz) ($\mu\text{m}/\sqrt{\text{Hz}}$)\\
 					\hline
 					$N_\text{super, 1}$ & 0.5895 & 0.2400 & 4.443e-6\\
 					\hline
@@ -372,14 +372,14 @@
 				\caption{RMS, band-limited RMS, and ASD values at 10 Hz of the super sensor noises predicted using filter design from \cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc} and the proposed method (\textbf{lower the better}).}
 				\label{table:metrics}
 			\end{table}
-			The $\mathcal{H}_\infty$ complementary filters performs better than the other two complementary filters s in terms of RMS value especially at the microseism band, which makes it a better candidate for active seismic noise isolation.
+			The $\mathcal{H}_\infty$ complementary filters perform better than the other two complementary filters in terms of RMS value especially at the microseism band, which makes it a better candidate for active seismic noise isolation.
 			While it performs worse at 10 Hz, there's still a 3 orders of magnitude reduction compared to that of the LVDT self-noise ($\approx\, 10^{-2}\,\mu\text{m}/\sqrt{\text{Hz}}$).
 			\end{block}
 			\begin{block}{Conclusion}
 				\begin{itemize}
-					\item The complementary filter problem was formulated as an $\mathcal{H}_\infty$ optimization problem.
+					\item The complementary filter problem is formulated as an $\mathcal{H}_\infty$ optimization problem.
 					\item Complementary filters can be synthesized using $\mathcal{H}_\infty$ method with no information other than the sensing noises themselves.
-					\item The method was exemplified using SRM preisolator sensors and is shown to able to generate filters that better reduce the RMS of the super sensor noise especially around the microseism band.
+					\item The method is exemplified using SRM preisolator sensors and is shown to able to generate filters that better reduce the RMS of the super sensor noise especially around the microseism band.
 					\item While the $\mathcal{H}_\infty$ filters perform worse at 10 Hz, 3 orders of magnitude reduction in super sensor noise ASD (compared to LVDT) can still be achieved.
 				\end{itemize}
 			\end{block}
