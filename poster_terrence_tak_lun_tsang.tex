@@ -72,7 +72,7 @@
 				\vspace{5mm}
 				
 				\centering\bfseries
-				{\fontsize{70}{84}\selectfont Optimal Sensor Fusion using $\mathcal{H}_\infty$ methods} \\ 
+				{\fontsize{70}{84}\selectfont Optimal Sensor Fusion using $\mathcal{H}_\infty$ methods} \\[10mm] 
 				\mdseries
 				{\fontsize{60}{72}\selectfont Terrence T.L. Tsang on behalf of the KAGRA Collaboration} \\[5mm]
 				{\fontsize{40}{48}\selectfont The Chinese University of Hong Kong. Email: \href{mailto:ttltsang@link.cuhk.edu.hk}{ttltsang@link.cuhk.edu.hk}}
@@ -116,8 +116,8 @@
 				
 			\begin{block}{Methodology: Complementary Filter Problem as an $\mathcal{H}_\infty$ Problem}
 				
-					$\mathcal{H}_\infty$ method in a nutshell:
-					
+					\textbf{$\mathcal{H}_\infty$ method in a nutshell:}
+
 					\begin{columns}[t, onlytextwidth]
 						\begin{column}{0.5\textwidth}
 							\begin{enumerate}
@@ -139,7 +139,10 @@
 					\medskip
 					
 					\begin{itemize}
-						\item The close-loop transfer function $\mathbf{G}(s)$ is defined such that $z=\mathbf{G}(s)w$ and $u=\mathbf{K}(s)v$.
+						\item The close-loop transfer function $\mathbf{G}(s)$ is defined such that $z=\mathbf{G}(s)w$ and $u=\mathbf{K}(s)v$, i.e.
+						\begin{equation}
+							\mathbf{G}(s) = P_{11}(s) + P_{12}(s)\mathbf{K}(s)\left[\mathbf{I}-P_{22}(s)\mathbf{K}(s)\right]^{-1}P_{21}(s).
+						\end{equation}
 						\item The $\mathcal{H}_\infty$-norm is defined as
 						\begin{equation}
 							\lVert \mathbf{G}(s) \rVert_\infty = \sup_\omega\bar\sigma \mleft(\mathbf{G}(j\omega)\mright)\,,
@@ -200,16 +203,16 @@
 					\node[draw, align=left] at (0.25\linewidth, -13) {Step 2: \\ Model the sensor noises with \\ transfer functions $\hat{N}_1(s)$ and $\hat{N}_2(s)$.};
 					\draw[loosely dotted, black, line width=1mm] (0.52\linewidth, -13) -- (0.7\linewidth, -14);
 					
-					\node[align=left] at (0.25\linewidth, -18.25) {$\Phi_1$ and $\Phi_2$ are white noises \\ that has power spectrum \\ with unitary amplitude.};
-					\draw[loosely dotted, black, line width=1mm] (0.43\linewidth, -18.25) -- (0.48\linewidth, -17.75);
+					\node[align=left] at (0.25\linewidth, -17.5) {$\Phi_1$ and $\Phi_2$ are white noise \\ processes that have unit intensity.};
+					\draw[loosely dotted, black, line width=1mm] (0.43\linewidth, -17) -- (0.48\linewidth, -17.25);
 					
-					\node[draw, align=left] at (0.25\linewidth, -24.5) {Step 3: \\ Add weighting functions $W_1(s)$  \\ and $W_2(s)$. \\ Define the generalized plant $\mathbf{P(s)}$ \\ as Eqn.~\ref{eqn:generalized_plant_complementary_filter}.};
+					\node[draw, align=left] at (0.25\linewidth, -23.5) {Step 3: \\ Add weighting functions $W_1(s)$  \\ and $W_2(s)$. \\ Define the generalized plant $\mathbf{P(s)}$ \\ as Eqn.~\ref{eqn:generalized_plant_complementary_filter}.};
 					\draw[loosely dotted, black, line width=1mm] (0.5\linewidth, -23) -- (0.7\linewidth, -21.5);
 					
-					\node[align=left] at (0.25\linewidth, -31.5) {$W_1(s)$ and $W_2(s)$ are the \\ inverse of the frequency dependent \\ specification of the sensor noises.};
-					\draw[loosely dotted, black, line width=1mm] (0.43\linewidth, -30.5) -- (0.5\linewidth, -30);
+					\node[align=left] at (0.25\linewidth, -30.25) {$W_1(s)$ and $W_2(s)$ are the \\ inverse of the frequency dependent \\ specification of the sensor noises \cite{Thomas:2019}.};
+					\draw[loosely dotted, black, line width=1mm] (0.43\linewidth, -29.5) -- (0.5\linewidth, -29);
 					
-					\node[draw, align=left] at (0.25\linewidth, -36) {Finally: \\ $\mathcal{H}_\infty$ synthesis gives optimal $H_1(s)$.} ;
+					\node[draw, align=left] at (0.25\linewidth, -35) {Finally: \\ $\mathcal{H}_\infty$ synthesis gives optimal $H_1(s)$,\\ and get $H_2(s)$ from $1-H_1(s)$.} ;
 				\end{tikzpicture}
 				\begin{column}{0.45\textwidth}
 
@@ -226,114 +229,143 @@
 			
 			\medskip
 			
-			The generalized plant is given by
-			\begin{equation}
-				\mathbf{P}(s) = 
-				\begin{bmatrix}
-					0 & \hat{N}_2(s) W_2(s) & 1 \\
-					\hat{N}_1(s) W_1(s) & -\hat{N}_2(s) W_2(s) & 0 \\
-				\end{bmatrix}\,.
-				\label{eqn:generalized_plant_complementary_filter}
-			\end{equation}
-			If we set $W_1(s)=1/\hat{N}_2(s)$ and $W_2(s)=1/\hat{N}_1(s)$, then
-			\begin{equation}
-				\lVert \mathbf{G}(s) \rVert_\infty \approx 
-				\begin{cases}
-					\sup_\omega \lvert \frac{N_\mathrm{super}(j\omega)}{\hat{N}_2(j\omega)} \rvert \,, & \lvert N_\mathrm{super}(j\omega) \rvert \gg \lvert \hat{N}_2(j\omega) \rvert\,,\\
-					\sup_\omega \lvert \frac{N_\mathrm{super}(j\omega)}{\hat{N}_1(j\omega)} \rvert\,, & \lvert N_\mathrm{super}(j\omega) \rvert \gg \lvert \hat{N}_1(j\omega) \rvert\,.
-				\end{cases}
-				\label{eqn:closed_loop_plant_complementary_filter}
-			\end{equation}
-			Minimizing $\lVert \mathbf{G}(s) \rVert_\infty$ is approximately equal to minimizing a cost function
-			\begin{equation}
-				J = \sup_\omega\mleft(\log \lvert N_\mathrm{super}(j\omega)\rvert-\log\min(\lvert N_1(j\omega) \rvert, \lvert N_2(j\omega)\rvert)\mright)\,,
-			\end{equation}
-			where is the maximum difference between the log super sensor noise and the lower bound of the sensor noises.
-			\end{block}
-			
-			\begin{block}{Results: Synthesizing Complementary Filters for SRM in KAGRA}
-				\begin{columns}[t, onlytextwidth]
-					\begin{column}{0.55\textwidth}
-						1
-					\end{column}
-					\begin{column}{0.45\textwidth}
-						\begin{figure}
-							\centering
-							\includegraphics[width=1\linewidth]{noise_fit}
-							\caption{Sensing noises of the SRM preisolator sensors.}
-
-							\label{fig:noise_fit}
-						\end{figure}
-					\end{column}
-				\end{columns}
+			\begin{itemize}
+				\item 	The generalized plant is given by
+				\begin{equation}
+					\mathbf{P}(s) = 
+					\mleft[
+					\begin{array}{cc|c}
+						0 & \hat{N}_2(s) W_2(s) & 1 \\
+						\hline
+						\hat{N}_1(s) W_1(s) & -\hat{N}_2(s) W_2(s) & 0 \\
+					\end{array}\mright]\,.
+					\label{eqn:generalized_plant_complementary_filter}
+				\end{equation}
 				
-				\begin{columns}[onlytextwidth]
-					\begin{column}{0.5\textwidth}
-						\begin{figure}
-							\centering
-							\includegraphics[width=1\linewidth]{complementary_filters_hinfinity}
-							\caption{Filters synthesized using $\mathcal{H}_\infty$ method.}
-							\label{fig:complementary_filters_hinfinity}
-						\end{figure}
-					\end{column}
-					\begin{column}{0.5\textwidth}
-						\begin{figure}
-							\centering
-							\includegraphics[width=1\linewidth]{super_sensor_noise_tf}
-							\caption{Predicted super sensor noise}
-							\label{fig:super_sensor_noise_tf}
-						\end{figure}
-					\end{column}
-				\end{columns}
+				\item The closed-loop plant is given by
+				\begin{equation}
+					\mathbf{G}(s) =
+					\begin{bmatrix}
+						H_1(s)\hat{N}_1(s)W_1(s) & H_2(s)\hat{N}_2(s)W_2(s)
+					\end{bmatrix}\,. 
+				\end{equation}
+			
+				\item 	If we set $W_1(s)=1/\hat{N}_2(s)$ and $W_2(s)=1/\hat{N}_1(s)$, then the target specification of $N_1(s)$ is set to $N_2(s)$ when $\lvert N_1(s) \rvert \gg \lvert N_2(s) \rvert$, and vice versa.
+				
+				\item Minimizing $\lVert \mathbf{G}(s) \rVert_\infty$ gives optimal complementary filters that minimizes the maximum difference between the super sensor noise and the lower bound of the sensor noise in logarithmic scale.
+				
+				\item This is equivalent to minimizing the cost function
+				\begin{equation}
+					\boxed{
+						J = \sup_\omega\mleft(\log \lvert N_\mathrm{super}(j\omega)\rvert-\log\min(\lvert N_1(j\omega) \rvert, \lvert 		N_2(j\omega)\rvert)\mright)\,.
+					}
+				\end{equation}
+				
+				\item $\mathcal{H}_\infty$ solvers are readily available in packages such as MATLAB and python-control.
+				
+				\item Complementary filters can be synthesized using the \texttt{kontrol} python package, which is developed for KAGRA's control systems.
+				
+			\end{itemize}
 			\end{block}
-
 		\end{column}
 	
 		% Column 3
 		\begin{column}{0.32\linewidth}
-			\begin{block}{Results: Synthesizing Complementary Filters for SRM in KAGRA (Cont.)}
-			
-			\begin{columns}[onlytextwidth]
-				\begin{column}{0.45\textwidth}
-					1
-				\end{column}
+			\begin{block}{Results: Complementary Filters for LVDTs and geophones}
+			\begin{columns}[t, onlytextwidth]
+				
 				\begin{column}{0.5\textwidth}
 					\begin{figure}
 						\centering
-						\includegraphics[width=1\linewidth]{super_sensor_noise_comparison}
-						\caption{Comparison between the super sensor noises predicted using filter design from \cite{Sekiguchi:2016bmv, vanHeijningen:2018cpc} and the proposed method.}
-						\label{fig:super_sensor_noise_comparison}
+						\includegraphics[width=1\linewidth]{noise_fit}
+						\caption{SRM sensor noises.}
+						\label{fig:noise_fit}
 					\end{figure}
 				\end{column}
+				\begin{column}{0.5\textwidth}
+					\begin{itemize}
+						\item Fig.~\ref{fig:noise_fit}: the empirical model of the seismic noise-coupled LVDT and geophone readout noises $N_1$ and $N_2$ and the transfer function models $\hat{N}_1(s)$ and $\hat{N_2}(s)$
+						\item Fig.~\ref{fig:complementary_filters_hinfinity}: The complementary filters synthesized using $\mathcal{H}_\infty$ method.
+						\item Fig.~\ref{fig:super_sensor_noise_tf}: The predicted super sensor noise using optimal complementary filters $H_1(s)$ and $H_2(s)$.
+					\end{itemize}
+				\end{column}
 			\end{columns}
-
+			
+			\begin{columns}[onlytextwidth]
+				\begin{column}{0.5\textwidth}
+					\begin{figure}
+						\centering
+						\includegraphics[width=1\linewidth]{complementary_filters_hinfinity}
+						\caption{Filters (using proposed method)}
+						\label{fig:complementary_filters_hinfinity}
+					\end{figure}
+				\end{column}
+				\begin{column}{0.5\textwidth}
+					
+					\begin{figure}
+						\centering
+						\includegraphics[width=1\linewidth]{super_sensor_noise_tf}
+						\caption{Predicted super sensor noise}
+						\label{fig:super_sensor_noise_tf}
+					\end{figure}
+					\begin{tikzpicture}[overlay]
+						\draw[->, black, line width=2mm] (9, 8) -- (10.4, 10.4);
+						\node[draw, align=left, fill=white] at (9, 7) {Predicted super sensor noise};
+					\end{tikzpicture}
+				\end{column}
+			\end{columns}
+			
 			\medskip
 			
-			\begin{table}
-				\begin{tabular}{|c|c|c|c|}
-					\hline
-					& RMS ($\mu\text{m}$) & RMS (0.1-0.5 Hz) ($\mu\text{m}$)& ASD (10 Hz) ($\mu\text{m}/\sqrt{\text{Hz}}$)\\
-					\hline
-					$N_\text{super, 1}$ & 0.5895 & 0.2400 & 4.443e-6\\
-					\hline
-					$N_\text{super, 2}$ & 0.4726 & 0.1650 & 4.443e-6\\
-					\hline
-					$N_{\text{super}, \mathcal{H}_\infty}$ & 0.3631 & 0.1041 & 2.087e-5\\
-					\hline
-					Lower bound & 0.0462 & 0.01422 & 4.443e-6\\
-					\hline
-				\end{tabular}
-				\caption{RMS, band-limited RMS, and ASD values at 10 Hz of the super sensor noises predicted using filter design from \cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc} and the proposed method (\textbf{lower the better}).}
-				\label{table:metrics}
-			\end{table}
+			\begin{itemize}
+				\item The predicted super sensor noise is defined by
+				\begin{equation}
+					\lvert \hat{N}_\mathrm{super}(j\omega) \rvert = \left[\lvert H_1(s)\rvert^2 \lvert \hat{N}_1(s) \rvert^2 + \lvert H_2(s)\rvert^2 \lvert \hat{N}_2(s) \rvert^2\right]^{\frac{1}{2}}\,.
+				\end{equation}
+				\item The super sensor noise is equally close to the lower bound at all frequencies (logarithmically).
+				\item Preliminary implementation results can be found in Ref.~\cite{Terrence:SRM}.
+			\end{itemize}
+
+%			\begin{columns}[onlytextwidth]
+%				\begin{column}{0.45\textwidth}
+%					1
+%				\end{column}
+%				\begin{column}{0.5\textwidth}
+%					\begin{figure}
+%						\centering
+%						\includegraphics[width=1\linewidth]{super_sensor_noise_comparison}
+%						\caption{Comparison between the super sensor noises predicted using filter design from \cite{Sekiguchi:2016bmv, vanHeijningen:2018cpc} and the proposed method.}
+%						\label{fig:super_sensor_noise_comparison}
+%					\end{figure}
+%				\end{column}
+%			\end{columns}
+%
+%			\medskip
+%			
+%			\begin{table}
+%				\begin{tabular}{|c|c|c|c|}
+%					\hline
+%					& RMS ($\mu\text{m}$) & RMS (0.1-0.5 Hz) ($\mu\text{m}$)& ASD (10 Hz) ($\mu\text{m}/\sqrt{\text{Hz}}$)\\
+%					\hline
+%					$N_\text{super, 1}$ & 0.5895 & 0.2400 & 4.443e-6\\
+%					\hline
+%					$N_\text{super, 2}$ & 0.4726 & 0.1650 & 4.443e-6\\
+%					\hline
+%					$N_{\text{super}, \mathcal{H}_\infty}$ & 0.3631 & 0.1041 & 2.087e-5\\
+%					\hline
+%					Lower bound & 0.0462 & 0.01422 & 4.443e-6\\
+%					\hline
+%				\end{tabular}
+%				\caption{RMS, band-limited RMS, and ASD values at 10 Hz of the super sensor noises predicted using filter design from \cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc} and the proposed method (\textbf{lower the better}).}
+%				\label{table:metrics}
+%			\end{table}
 
 			\end{block}
-			\begin{block}{Conclusion}
+			\begin{block}{Discussion and Future work.}
 				\begin{itemize}
-					\item The complementary filter problem is formulated as an $\mathcal{H}_\infty$ optimization problem.
-					\item Complementary filters can be synthesized using $\mathcal{H}_\infty$ method with no information other than the sensing noises themselves.
-					\item The method is exemplified using SRM preisolator sensors and is shown to able to generate filters that better reduce the RMS of the super sensor noise especially around the microseism band.
-					\item While the $\mathcal{H}_\infty$ filters perform worse at 10 Hz, 3 orders of magnitude reduction in super sensor noise ASD (compared to LVDT) can still be achieved.
+					\item Unlike static filter designs, such us those in Refs.~\cite{Sekiguchi:2016bmv,vanHeijningen:2018cpc,low_frequency_optimization_and_performance_of_advanced_virgo_seismic_isolation_system}, the proposed method can generate filters that is optimal for any arbitrary sensor noises.
+					\item Sensor correction and feedback-control filters can both be formulated into a complementary filter configuration. They can both be solved using the same method.
+					
 				\end{itemize}
 			\end{block}
 			\begin{block}{References}
